@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <Head>
+        <!-- Imports and Not content information -->
+    </Head>
+    <body>
+        <div class="content">
+            <!-- Content of the Homepage -->
+            <div id="header" class="header-style">
+                <H1>Cookie Clicker</H1>
+            </div>
+            <div id="body" class="body-style">
+                <div id="cookie" onclick="addPoint()">
+                    <div id="points">0</div>
+                    <img id="cookie-image" src="https://media.istockphoto.com/photos/chocolate-chip-cookie-isolated-picture-id517109442?k=20&m=517109442&s=612x612&w=0&h=Fe3NT8oPm31-00MtJOZv9cfgC3jyc9ix32CzWrqpu5Y=" class="cookie-image" width="100" height="100" />
+                </div>
+            </div>
+            <div id="shop">
+                <h2>This is the shop</h2>
+                <div id="small-power-up" onclick="firstPowerUp()">
+                    <p>Price: <div id="cost-small">5</div></p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Eo_circle_green_arrow-up.svg/2048px-Eo_circle_green_arrow-up.svg.png" width="50" height="50" /></div>
+            </div>
+            <div id="error-msg">
+
+            </div>
+        </div>
+
+        <script>
+            var points = 0;
+            var power = 1;
+            // Scripts to make the homepage dynamic can be written here
+            function addPoint() 
+            {
+                //console.log('here i am');
+                var element = document.getElementById("points");
+                //console.log(element);
+                points = points + (1 * power);
+                
+                //console.log(points);
+                element.innerHTML = points;
+            }
+
+            function firstPowerUp() {
+                var cost = parseInt(document.getElementById("cost-small").innerHTML);
+                if (points - cost < 0){
+                    document.getElementById("error-msg").innerHTML = "You don't have enough points";
+                    setTimeout(removeErrorMsg, 5000);
+                    return;
+                }
+                
+                points = points - cost;
+                power += 0.5;
+                document.getElementById("points").innerHTML = points;
+
+                var image = document.getElementById("cookie-image");
+                image.src = "https://celebratingsweets.com/wp-content/uploads/2018/12/MM-Cookies-1-500x375.jpg";
+            }
+            function removeErrorMsg() {
+                document.getElementById("error-msg").innerHTML = "";
+            }
+        </script>
+    </body>
+</html>
